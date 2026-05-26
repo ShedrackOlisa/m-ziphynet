@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Application Deadline</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:#111;
+}
+
+.container{
+    max-width:480px;
+    margin:0 auto;
+    padding:24px 18px 40px;
+    text-align:center;
+}
+
+.heading{
+    color:#e10600;
+    font-size:32px;
+    font-weight:900;
+    line-height:1.2;
+    margin-bottom:16px;
+    text-transform:uppercase;
+}
+
+.deadline{
+    font-size:20px;
+    font-weight:800;
+    color:#111;
+    line-height:1.4;
+    margin-bottom:20px;
+}
+
+.timer{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:28px;
+}
+
+.time-box{
+    min-width:75px;
+}
+
+.time-number{
+    color:#e10600;
+    font-size:34px;
+    font-weight:900;
+    line-height:1;
+}
+
+.time-label{
+    margin-top:4px;
+    font-size:12px;
+    font-weight:700;
+    color:#555;
+    text-transform:uppercase;
+}
+
+.apply-btn{
+    display:block;
+    width:100%;
+    background:#8b0000;
+    color:#fff;
+    text-decoration:none;
+    font-size:24px;
+    font-weight:900;
+    padding:18px;
+    border-radius:999px;
+    margin-bottom:28px;
+    box-shadow:0 4px 12px rgba(139,0,0,.2);
+}
+
+.trust{
+    text-align:left;
+    margin-bottom:25px;
+}
+
+.trust-item{
+    font-size:18px;
+    font-weight:700;
+    color:#222;
+    margin:14px 0;
+    line-height:1.4;
+}
+
+.check{
+    color:#16a34a;
+    margin-right:8px;
+}
+
+.footer-note{
+    font-size:13px;
+    color:#777;
+    text-align:center;
+}
+
+@media (max-width:380px){
+    .time-number{
+        font-size:28px;
+    }
+
+    .time-box{
+        min-width:65px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1 class="heading">START APPLICATION BELOW!</h1>
+
+    <div class="deadline">
+        Deadline: Monday, December 29, 2026 at 11:59:00 PM
+    </div>
+
+    <div class="timer">
+        <div class="time-box">
+            <div class="time-number" id="days">00</div>
+            <div class="time-label">Days</div>
+        </div>
+
+        <div class="time-box">
+            <div class="time-number" id="hours">00</div>
+            <div class="time-label">Hours</div>
+        </div>
+
+        <div class="time-box">
+            <div class="time-number" id="minutes">00</div>
+            <div class="time-label">Minutes</div>
+        </div>
+
+        <div class="time-box">
+            <div class="time-number" id="seconds">00</div>
+            <div class="time-label">Seconds</div>
+        </div>
+    </div>
+
+    <a href="#" class="apply-btn">APPLY NOW</a>
+
+    <div class="trust">
+        <div class="trust-item"><span class="check">✔</span>No degree or US experience required</div>
+        <div class="trust-item"><span class="check">✔</span>Earn $25–$40/hr with full benefits</div>
+        <div class="trust-item"><span class="check">✔</span>H-2B Visa Sponsorship covered by employer</div>
+    </div>
+
+    <div class="footer-note">
+        Free Application · No Hidden Costs · Limited Slots
+    </div>
+
+</div>
+
+<script>
+// Set deadline date here
+const deadline = new Date("December 29, 2026 23:59:00").getTime();
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = deadline - now;
+
+    if (distance <= 0) {
+        document.getElementById("days").innerHTML = "00";
+        document.getElementById("hours").innerHTML = "00";
+        document.getElementById("minutes").innerHTML = "00";
+        document.getElementById("seconds").innerHTML = "00";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerHTML = String(days).padStart(2, "0");
+    document.getElementById("hours").innerHTML = String(hours).padStart(2, "0");
+    document.getElementById("minutes").innerHTML = String(minutes).padStart(2, "0");
+    document.getElementById("seconds").innerHTML = String(seconds).padStart(2, "0");
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
